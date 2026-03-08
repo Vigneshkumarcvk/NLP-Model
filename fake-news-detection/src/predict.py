@@ -1,8 +1,16 @@
 import pickle
+import os
 from preprocess import clean_text
 
-model = pickle.load(open("models/fake_news_detection.pkl","rb"))
-vectorizer = pickle.load(open("models/vectorizer.pkl","rb"))
+# Get project root directory
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.abspath(os.path.join(current_dir, ".."))
+
+model_path = os.path.join(project_root, "models", "fake_news_detection.pkl")
+vectorizer_path = os.path.join(project_root, "models", "vectorizer.pkl")
+
+model = pickle.load(open(model_path, "rb"))
+vectorizer = pickle.load(open(vectorizer_path, "rb"))
 
 def predict_news(news):
 
