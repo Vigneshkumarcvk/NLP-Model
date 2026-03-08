@@ -1,17 +1,28 @@
 import sys
+import os
 import streamlit as st
-sys.path.append("src")
-from predict import predict_news
-st.title("Fake News Detection using NLP")
-st.write("Enter a news article below to check if it is Fake or Real")
-news_text = st.text_area("Enter News Text", height = 200)
-if st.button("Detect News"):
-  if news_text.strip() == "":
-    st.warning("Please enter some text")
-  else:
-    result = predict_news(news_text)
 
-    if result == "Fake News":
-      st.error("Fake nNews Detected")
+# Add src folder to path
+sys.path.append(os.path.abspath("../src"))
+
+from predict import predict_news
+
+st.title("Fake News Detection using NLP")
+
+st.write("Enter a news article below to check if it is Fake or Real")
+
+news_text = st.text_area("Enter News Text")
+
+if st.button("Detect News"):
+
+    if news_text.strip() == "":
+        st.warning("Please enter some text")
+
     else:
-      st.sucess("Real News")
+        result = predict_news(news_text)
+
+        if result == "Fake News":
+            st.error("Fake News Detected")
+
+        else:
+            st.success("Real News")
