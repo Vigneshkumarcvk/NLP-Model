@@ -2,8 +2,12 @@ import sys
 import os
 import streamlit as st
 
-# Add src folder to path
-sys.path.append(os.path.abspath("../src"))
+# Get project root directory
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.abspath(os.path.join(current_dir, ".."))
+
+# Add src folder to Python path
+sys.path.append(os.path.join(project_root, "src"))
 
 from predict import predict_news
 
@@ -23,6 +27,5 @@ if st.button("Detect News"):
 
         if result == "Fake News":
             st.error("Fake News Detected")
-
         else:
             st.success("Real News")
