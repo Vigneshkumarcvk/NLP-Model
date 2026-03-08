@@ -2,3 +2,4 @@ streamlit
 sci-kit learn
 pandas
 nltk
+numpy

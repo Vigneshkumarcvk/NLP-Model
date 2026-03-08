@@ -3,9 +3,12 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 
-nltk.download("stopwords")
+try:
+    stop_words = set(stopwords.words("english"))
+except:
+    nltk.download("stopwords")
+    stop_words = set(stopwords.words("english"))
 
-stop_words = set(stopwords.words("english"))
 stemmer = PorterStemmer()
 
 def clean_text(text):
